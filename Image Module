@@ -1,0 +1,79 @@
+<script>
+jQuery(document).ready(function ($) {
+    $('.mega-entry').each(function(){
+        $(this).detach().appendTo('.megafolio-container');
+    });
+   
+});
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+				 $('.lightbox').lightbox();
+			 }); 
+			jQuery(document).ready(function ($) {
+				$("a.customlightbox").lightbox({
+					buttons: [
+							{
+								'class': 'jquery-lightbox-button-openurl',
+								'html': '<span>open in new window</span>',
+								'callback': function (url, object) {
+									window.location.href = url;
+								}
+							}
+					]
+				});
+			});
+</script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		var api = jQuery('#megafolio-container840').megafoliopro({
+			filterChangeAnimation: "fade",
+			filterChangeSpeed: 600,
+			filterChangeRotate: 99,
+			filterChangeScale: 0.6,
+			delay: 20,
+			defaultWidth: 980,
+			paddingHorizontal: 5,
+			paddingVertical: 5,
+			layoutarray: [7, 6]
+		});
+		jQuery('#filter_padder840 .filter').click(function() {
+			jQuery('.filter').each(function() {
+				jQuery(this).removeClass("selected")
+			});
+			api.megafilter(jQuery(this).data('category'));
+			jQuery(this).addClass("selected");
+			jQuery('body').find('ul.filter_list').slideUp(500).addClass("closed");
+			jQuery('body').find('.current-filter').html(jQuery(this).text());
+		});
+		jQuery('#filter_list_button840').click(function() {
+			var ul = jQuery('body').find('#filter_listm840');
+			if (ul.hasClass('closed')) {
+				ul.slideDown(500);
+				ul.removeClass('closed');
+			} else {
+				ul.slideUp(500);
+				ul.addClass('closed');
+			}
+		});
+		jQuery('.addmore').click(function() {
+			for (var i = 0; i < Math.round(Math.random() * 4 + 1); i++) {
+				var newentry = createEntry();
+				api.megaappendentry(newentry);
+			}
+		});
+
+		function createEntry() {}
+	});
+</script>
+
+<script>
+jQuery(document).ready(function ($) {
+    setTimeout(function(){
+        $('.mega-entry').each(function(){
+            var src = $(this).attr('data-src');
+            $(this).children('.mega-entry-innerwrap').css("background-image","url('" + src +"')");
+        });
+    },2000);
+});
+</script>
